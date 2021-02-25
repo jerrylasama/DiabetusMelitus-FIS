@@ -17,8 +17,15 @@ blood_glucose = st.number_input("Gula Darah Puasa")
 cholesterol = st.number_input("Kolesterol")
 
 mamdani_value = get_mamdani_inference(age, bmi, blood_pressure, blood_glucose, cholesterol)
+if(mamdani_value<=3):
+    output_string = "Resiko Rendah"
+elif(mamdani_value>3 and mamdani_value<7):
+    output_string = "Resiko Sedang"
+else: 
+    output_string = "Resiko Tinggi"
 st.subheader("Hasil Analisis: ")
 bmi_text = "Underweight" if (bmi < 18.5) else "Normal" if (bmi >= 18.5 and bmi < 25) else "Overweight" if (bmi>= 25 and bmi < 30) else "Obese"
 st.write("BMI: {:.2f}".format(bmi))
 st.write("Terklasifikasi : {}".format(bmi_text))
-st.write("Tingkat Resiko Diabetes: {} ".format(mamdani_value))
+st.write("Tingkat Resiko Diabetes: {:.2f}/10".format(mamdani_value))
+st.write("Terklasifikasi: {}".format(output_string))
